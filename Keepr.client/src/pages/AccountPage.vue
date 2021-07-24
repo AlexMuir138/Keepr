@@ -18,6 +18,7 @@
              id=""
              aria-describedby="helpId"
              placeholder=""
+             v-model="state.newKeep.name"
       >
       <small id="helpId" class="form-text text-muted mb-2">Keep Name</small>
       <input type="text"
@@ -26,8 +27,18 @@
              id=""
              aria-describedby="helpId"
              placeholder=""
+             v-model="state.newKeep.description"
       >
       <small id="helpId" class="form-text text-muted">Keep Description</small>
+      <input type="text"
+             class="form-control"
+             name="merchantName"
+             id=""
+             aria-describedby="helpId"
+             placeholder=""
+             v-model="state.newKeep.img"
+      >
+      <small id="helpId" class="form-text text-muted">Keep Img</small>
       <button class="mt-5 btn btn-block btn-info">
         Create
       </button>
@@ -60,21 +71,3 @@ img {
   max-width: 100px;
 }
 </style>
-
-//  setup() {
-//     const route = useRoute()
-//     const state = reactive({
-//       newMerchant: {}
-//     })
-//     watchEffect(() => {
-//       merchantService.getMerchant(route.params.id)
-//       productService.getProductsByMerchantId(route.params.id)
-//     })
-//     return {
-//       state,
-//       activeMerchant: computed(() => AppState.activeMerchant),
-//       products: computed(() => AppState.products),
-//       createMerchant() {
-//         merchantService.createMerchant(state.newMerchant)
-//       }
-//     }

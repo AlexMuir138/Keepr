@@ -8,10 +8,16 @@ class KeepsService {
     logger.log('da keeps', res.data)
     AppState.keeps = res.data
   }
+
+  async createKeep(newKeep) {
+    const res = await api.post('api/keeps', newKeep)
+    logger.log(res.data)
+  }
 }
 export const keepsService = new KeepsService()
 
-// async getAll() {
-//   const res = await api.get('api/keeps')
-//   logger.log('products', res.data)
+// async createMerchant(newMerchant) {
+//   const res = await api.post('api/merchants', newMerchant)
+//   logger.log(res.data)
+//   AppState.activeMerchant = res.data
 // }
