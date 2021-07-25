@@ -1,4 +1,9 @@
 <template>
+  <div class="row d-flex justify-content-center">
+    <div class="col-12">
+      <ActiveKeep v-if="activeKeep" />
+    </div>
+  </div>
   <Keep v-for="k in keeps" :key="k.id" :keep="k" />
 </template>
 
@@ -11,7 +16,10 @@ export default {
     onMounted(() => {
       keepsService.getAllKeeps()
     })
-    return { keeps: computed(() => AppState.keeps) }
+    return {
+      keeps: computed(() => AppState.keeps),
+      activeKeep: computed(() => AppState.activeKeep)
+    }
   }
 }
 </script>
