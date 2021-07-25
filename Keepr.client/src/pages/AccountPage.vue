@@ -44,19 +44,31 @@
       </button>
     </form>
   </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <Vault v-for="v in vaults" :key="v.id" :vault="v" />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import { computed, reactive } from 'vue'
+import { computed, onMounted, reactive } from 'vue'
 import { AppState } from '../AppState'
 import { keepsService } from '../services/KeepsService'
+import { vaultsService } from '../services/VaultsService'
 export default {
   setup() {
+    onMounted(() => {
+      vaultsService.getVaults()
+    })
     const state = reactive({
       newKeep: {}
     })
     return {
       state,
+      vaults: computed(() => AppState.vaults),
       account: computed(() => AppState.account),
       createKeep() {
         keepsService.createKeep(state.newKeep)
