@@ -2,11 +2,16 @@
   <div class="Keep col-lg-3">
     <div class="p-3">
       <h3 class="text-secondary text-center">
-        <p @click="setActiveKeep" data-toggle="modal" data-target="#exampleModalCenter" title="View Keep">
+        <p @click="setActiveKeep" data-toggle="modal" data-target="#keepModal" title="View Keep">
           <u>{{ keep.name }}</u>
         </p>
       </h3>
       <img class="img-fluid rounded drop-shadow" :src="keep.img" alt="">
+    </div>
+    <div class="d-flex justify-content-center">
+      <button @click="deleteKeep(keep.id)" class="btn btn-danger" title="Delete Keep">
+        Delete
+      </button>
     </div>
   </div>
 </template>
@@ -25,6 +30,9 @@ export default {
       state,
       setActiveKeep() {
         keepsService.setActiveKeep(props.keep)
+      },
+      async deleteKeep(id) {
+        await keepsService.deleteKeep(id)
       }
     }
   }

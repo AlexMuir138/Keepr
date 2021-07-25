@@ -1,9 +1,9 @@
 <template>
   <div class="modal"
-       id="exampleModalCenter"
+       id="keepModal"
        tabindex="-1"
        role="dialog"
-       aria-labelledby="exampleModalCenterTitle"
+       aria-labelledby="keepModalTitle"
        aria-hidden="true"
   >
     <div class=" modal-dialog modal-dialog-centered" role="document">

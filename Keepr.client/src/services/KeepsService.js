@@ -14,6 +14,11 @@ class KeepsService {
     logger.log(res.data)
   }
 
+  async deleteKeep(id) {
+    await api.delete('api/keeps/' + id)
+    AppState.keeps = AppState.keeps.filter(k => k.id !== id)
+  }
+
   setActiveKeep(keepData) {
     AppState.activeKeep = AppState.keeps[keepData.VaultId].find(k => k.id === keepData.id)
     logger.log(AppState.activeKeep)

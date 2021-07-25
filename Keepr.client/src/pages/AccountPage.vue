@@ -16,7 +16,7 @@
           <hr>
           <input type="text"
                  class="form-control "
-                 name="merchantName"
+                 name="vaultName"
                  id=""
                  aria-describedby="helpId"
                  placeholder=""
@@ -49,9 +49,36 @@
       <div class="col-12 d-flex flex-row">
         <Vault v-for="v in vaults" :key="v.id" :vault="v" />
       </div>
+      <div class="col-12 d-flex justify-content-center">
+        <form class="form-group col-md-8 text-center" @submit.prevent="createVault">
+          <h3 class="mb-3">
+            Create A New Vault
+          </h3>
+          <hr>
+          <input type="text"
+                 class="form-control "
+                 name="vaultName"
+                 id=""
+                 aria-describedby="helpId"
+                 placeholder=""
+                 v-model="state.newVault.name"
+          >
+          <small id="helpId" class="form-text text-muted mb-2">Vault Name</small>
+          <input type="text"
+                 class="form-control"
+                 name="vaultDescription"
+                 id=""
+                 aria-describedby="helpId"
+                 placeholder=""
+                 v-model="state.newVault.description"
+          >
+          <small id="helpId" class="form-text text-muted">Vault Description</small>
+          <button class="mt-5 btn btn-block btn-info">
+            Create
+          </button>
+        </form>
+      </div>
     </div>
-  </div>
-  <div class="row">
   </div>
 </template>
 
@@ -66,7 +93,8 @@ export default {
       vaultsService.getVaults()
     })
     const state = reactive({
-      newKeep: {}
+      newKeep: {},
+      newVault: {}
     })
     return {
       state,
@@ -74,6 +102,10 @@ export default {
       account: computed(() => AppState.account),
       createKeep() {
         keepsService.createKeep(state.newKeep)
+      },
+      createVault() {
+        vaultsService.createVault(state.newVault)
+        vaultsService.getVaults()
       }
     }
   }
